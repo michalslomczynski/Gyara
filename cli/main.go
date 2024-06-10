@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"os"
+
+	"github.com/michalslomczynski/gyara"
 )
 
 func main() {
@@ -19,7 +21,7 @@ func main() {
 	}
 
 	ruleContents := string(data)
-	parsedRule := ParseRule(ruleContents)
+	parsedRule := gyara.ParseRule(ruleContents)
 
 	fmt.Println(parsedRule)
 }

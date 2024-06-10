@@ -1,4 +1,4 @@
-package main
+package gyara
 
 import "strings"
 
@@ -28,11 +28,17 @@ func ParseRule(rule string) YARARule {
 			continue
 		}
 
-		if strings.HasPrefix(line, "rule") && yaraRule.RuleName == "" {
+		if strings.HasPrefix(line, "rule ") ||
+			strings.HasPrefix(line, "private rule ") &&
+				yaraRule.RuleName == "" {
 			parts := strings.Fields(line)
 			yaraRule.RuleName = strings.TrimRight(parts[1], ":")
 			if len(parts) > 2 {
-				yaraRule.Tags = parts[2:]
+				if parts[2] == ":" {
+					yaraRule.Tags = parts[3:]
+				} else {
+					yaraRule.Tags = parts[2:]
+				}
 			}
 		} else if line == "meta:" {
 			metaSection = true
