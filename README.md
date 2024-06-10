@@ -3,7 +3,7 @@ Gyara is a script and library that lexes and parses a file consisting of one mor
 
 # How to use
 Import and call ParseRule in your codebase.\
-Execute locally\
+Or execute locally:
 ```bash
 
 go build -o gyara cli/main.go && ./gyara <rule_file>
